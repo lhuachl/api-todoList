@@ -1,0 +1,13 @@
+[project]
+name = "apitodoapp"
+version = "0.1.0"
+description = "Simple TODO App API with FastAPI and Supabase"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.116.1",
+    "supabase>=2.18.1",
+    "uvicorn>=0.32.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+]
