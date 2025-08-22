@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime
@@ -16,11 +17,19 @@ SUPABASE_KEY = os.getenv("SUPABASE_ANON_KEY", "")
 # Crear cliente de Supabase
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-# Crear la aplicación FastAPI
 app = FastAPI(
     title="TODO App API",
     description="Una API simple para gestionar tareas TODO",
     version="1.0.0"
+)
+
+# Configuración de CORS para permitir peticiones desde Razor (.NET) u otros frontends
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Cambia esto por el dominio de tu frontend en producción
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Modelos Pydantic
